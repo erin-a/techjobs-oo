@@ -26,6 +26,28 @@ public class JobForm {
         TODO #3 - Included other fields needed to create a job,
         with correct validation attributes and display names.
         Don't forget to add getters and setters
+
+        TODO #3 and 4 notes from assignment
+        First, you'll need to work within JobForm to set up the properties to allow for both form display and form
+        submission. Cheryl has put in place the code to display and process the name and the data associated with
+        an employer.
+
+        Notice that rather having a field for employer, we have a field for employerId:
+        @NotNull
+        private int employerId;
+
+        In the user interface (that is, on the web page) we'll only need to display the name of each employer, and
+        when processing the form, we'll use the ID to retrieve the employer from the data layer. Using the ID of an
+        employer is the only way to uniquely identify which employer has been selected in the form, outside the cozy
+        confines of our Java application.
+
+        In the JobForm constructor, we initialize the list of Employer objects. Initializing the other lists is up
+        to you.
+
+        For tasks #3-5, you'll need to mimic the code that's in place for employerId and the employers list for
+        the other job field types.
+
+
      */
 
     private ArrayList<Employer> employers;
@@ -39,6 +61,9 @@ public class JobForm {
 
         /*
             TODO #4 - populate the other ArrayList collections needed in the view
+
+            see notes above but also note For tasks #3-5, you'll need to mimic the code that's in place for employerId
+            and the employers list for the other job field types.
         */
 
         employers = jobData.getEmployers().findAll();

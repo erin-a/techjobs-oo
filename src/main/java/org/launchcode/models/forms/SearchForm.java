@@ -7,13 +7,13 @@ import org.launchcode.models.JobFieldType;
  */
 public class SearchForm {
 
-    // The search options
+    // The search options - is necessary to display and process the form b/c of model binding
     private JobFieldType[] fields = JobFieldType.values();
 
-    // The selected search options
+    // The selected search options - is necessary to display and process the form b/c of model binding
     private JobFieldType searchField = JobFieldType.ALL;
 
-    // The search string
+    // The search string - is necessary to display and process the form b/c of model binding
     private String keyword;
 
     public JobFieldType getSearchField() {

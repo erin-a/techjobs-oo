@@ -91,3 +91,10 @@ public class Job {
         return id;
     }
 }
+
+
+//You should not try to create a new Job object with Employer, Location, etc. properties that don't already exist.
+// Our non-database system isn't as robust as it will be shortly, and doing something like this might break it.
+//
+//When you create a new Job object for this assignment, you'll always be doing so using existing employers,
+// locations, etc.
