@@ -1,5 +1,6 @@
 package org.launchcode.controllers;
 
+import org.launchcode.models.Job;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import javax.validation.Valid;
 
 /**
  * Created by LaunchCode
+ * annotated my moi
+ * I'm using my comments to rubber duck this OO.
  */
 @Controller
 @RequestMapping(value = "job")
@@ -20,7 +23,7 @@ public class JobController {
     private JobData jobData = JobData.getInstance();
 
     // The detail display for a given Job at URLs like /job?id=17
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET) //${job.id} next to value = is where you set the route - so I think this is where you put the placeholder thing for the id - which think is the ${}
     public String index(Model model, int id) {
 
         // TODO #1 - get the Job with the given ID and pass it into the view
@@ -29,6 +32,28 @@ public class JobController {
         // Within the index handler method of JobController, you should retrieve the job with the given ID, and then
         // pass it into the view.
 
+        // you need to pull the job data by the id
+
+        // Job j = new Job(id); // creates object j of the job class and as a new object // this is wrong because we shouldn't be creating an object, we are looking for an object
+        // can't use find by id because that is not static, so not accessible here // tells it to select the exact job data based on the find by id method in the job data model
+        // can i just make find by id static???
+        // this.id = id; //first is red error says cannot find symbol, symbol is variable id
+        // model.addAttribute("id", id);
+
+        //maybe i need to create an Job j, so later i can call Job.j ?
+
+        // JobData j = new JobData().findById(); // tried Job().getbyid, but it didn't work so switched to jobdata. // then tried findbyid, same errors. Source 1 in notes
+        // not working because JobData is private. W.T.F. - class job data is public, but there is also a method called job data in there, i don't know how to differentiate
+        // tried Job j and JobData j and it's not helping either
+        // tried this: Job j = new JobFieldData<>().findById(id); because JobFieldData and findById are both public, but it didn't work, probably since JFD is derived from JobData I
+
+        //JobData j = new JobData(getById()); //create a class Instance
+        // model.addAttribute("id", JobData().getById()); //call the non-static method
+
+        //Job j = new Job(JobData().findById());
+        //Job j = new Job(JobData.findById());
+        //Job j = new Job(JobData().findById(id));
+        //Job j = new Job(JobData.findById(id));
         return "job-detail";
     }
 

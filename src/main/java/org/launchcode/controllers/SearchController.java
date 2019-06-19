@@ -28,8 +28,7 @@ public class SearchController {
 
     @RequestMapping(value = "results")
     public String search(Model model,
-                         @ModelAttribute SearchForm searchForm) {
-
+        @ModelAttribute SearchForm searchForm) {
         ArrayList<Job> jobs;
 
         if (searchForm.getSearchField().equals(JobFieldType.ALL)) {

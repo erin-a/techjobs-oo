@@ -36,10 +36,10 @@ public class ListController {
         }
 
 
-        ArrayList<? extends JobField> items;
+        ArrayList<? extends JobField> items;  // ? is part of extensions - interface prep work
 
         switch(column) {
-            case EMPLOYER:
+            case EMPLOYER: // case is another way to do an if statement, provides a structure
                 items = jobData.getEmployers().findAll();
                 break;
             case LOCATION:

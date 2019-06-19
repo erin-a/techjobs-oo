@@ -5,6 +5,7 @@ package org.launchcode.models;
  */
 public class JobField {
 
+    // the id and value extend to the child classes of Job Field (Employer, Location, Core Competency & Position Type)
     private String value;
     private int id;
     private static int nextId = 1;
@@ -31,6 +32,7 @@ public class JobField {
         value = aValue;
     }
 
+    // the toString method is also inherited by child classes of JobField
     public String toString() {
         return value;
     }
