@@ -1,6 +1,7 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Job;
+import org.launchcode.models.data.JobFieldData;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,15 @@ public class JobController {
         //Job j = new Job(JobData.findById());
         //Job j = new Job(JobData().findById(id));
         //Job j = new Job(JobData.findById(id));
+
+
+        // fresh day
+        // in mvc we pulled an array list to find the data, so let's try that tactic but with single item instead of the array list
+        Job job = jobData.findById(id); //static/non-static can I just change the static and/or access levels?  tried this, it led down a rabbit hole of contingencies, or is that the answer?
+        // Job j = JobFieldData.findById(id); // I think this would require is casting and that's not good.
+        model.addAttribute("job", job);
+        // I needed jobData (lower case j) not JobData, because JobData is a different class, and jobData is calling the instance declared at the top of this method handler
+        // changing j to job to cooperate with html
         return "job-detail";
     }
 
