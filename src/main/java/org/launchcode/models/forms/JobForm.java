@@ -27,7 +27,7 @@ public class JobForm {
 
 
     /*
-        TODO #3 - Included other fields needed to create a job, with correct validation attributes and display names.
+        TODO (done) #3 - Included other fields needed to create a job, with correct validation attributes and display names.
         Don't forget to add getters and setters
 
         Fields we'll need:
@@ -50,14 +50,10 @@ public class JobForm {
     @NotNull
     private PositionType positionTypeId;
 
-
         // Location location = employerId.getLocation().getValue()
 
-
-
-
 /*
-        TODO #3 and 4 notes from assignment
+        TO DO #3 and 4 notes from assignment
         First, you'll need to work within JobForm to set up the properties to allow for both form display and form
         submission. Cheryl has put in place the code to display and process the name and the data associated with
         an employer.
@@ -137,7 +133,7 @@ public class JobForm {
         JobData jobData = JobData.getInstance();
 
         /*
-            TODO #4 - populate the other ArrayList collections needed in the view
+            TODO (done) #4 - populate the other ArrayList collections needed in the view
             see notes above but also note For tasks #3-5, you'll need to mimic the code that's in place for employerId
             and the employers list for the other job field types.
         */

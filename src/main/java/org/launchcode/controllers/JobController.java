@@ -27,7 +27,7 @@ public class JobController {
     @RequestMapping(value = "", method = RequestMethod.GET) //${job.id} next to value = is where you set the route - so I think this is where you put the placeholder thing for the id - which think is the ${}
     public String index(Model model, int id) {
 
-        // TODO #1 - get the Job with the given ID and pass it into the view
+        // TODO (done) #1 - get the Job with the given ID and pass it into the view
         // Your first two tasks involve displaying data associated with a single job. When you're done, visiting the
         // URL /job?id=X will display the details of the job with an id equal to X.
         // Within the index handler method of JobController, you should retrieve the job with the given ID, and then
@@ -80,6 +80,9 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
+
+        //if(employerId.getLocation().getValue().contains(jobForm.getLocationId()))
+        // Location location = employerId.getLocation().getValue()
 
 
 
