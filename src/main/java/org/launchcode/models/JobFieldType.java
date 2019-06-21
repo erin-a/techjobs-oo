@@ -30,8 +30,8 @@ public enum JobFieldType {
  The enum has the values EMPLOYER, LOCATION, POSITION_TYPE, CORE_COMPETENCY, and ALL. These take the place of
  the "magic strings" that we were using all across our code in the first two iterations of TechJobs.
 
- To find all employers we can do this: ArrayList<JobField> employers = jobData.findByColumnAndValue(JobFieldType.EMPLOYER,
- "LaunchCode");
+ To find all employers we can do this:
+ ArrayList<JobField> employers = jobData.findByColumnAndValue(JobFieldType.EMPLOYER,"LaunchCode");
 
  By using enum values instead of strings, we eliminate the possibility of runtime errors. In other words,
  the compiler will force us to use a valid JobFieldType, whereas if we had misspelled "employer" in the first example,
