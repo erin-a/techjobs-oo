@@ -75,7 +75,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @Valid JobForm jobForm, Errors errors) { // added @ModelAttribute
+    public String add(Model model, @ModelAttribute @Valid JobForm jobForm, Errors errors) { // added @ModelAttribute
         // annotation because I think binding is necessary to make the validation work
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
@@ -86,7 +86,8 @@ public class JobController {
             return "new-job";
         }
 
-        return "";
+        return ""; // this is going to need to go back and add the information to the database and display it - need
+        // to go back in git and see what I deleted from before.
 
     }
 }
