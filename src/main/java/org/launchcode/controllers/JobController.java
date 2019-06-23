@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -76,7 +77,8 @@ public class JobController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid  JobForm jobForm, Errors errors, Job newJob) { // added @ModelAttribute
-        // annotation because I think binding is necessary to make the validation work // added and removed Job new Job as a parameter, that idn't work h
+        // annotation because I think binding is necessary to make the validation work // added and removed Job new Job
+        // as a parameter, that idn't work h
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
@@ -89,16 +91,24 @@ public class JobController {
 
         //JobData.add(newJob); // this is what we did in cheese, but cheese had already an instand of newJob defined as an parameter, so added it to the end of the list, not sure if we need to play with the order...
 
+        // this return should redirect to the new job using the individual job link from to do number 1
+        // return "job-detail"; // this showed the right page but didn't show the correct URL we created in to do number 1 - /job?id=17
 
-        return "job-detail"; // this should redirect to the new job using the individual job link from to do number 1
+        //goal:
+        //http://localhost:8080/job?id=17
+        //current:
+        //http://localhost:8080/job/?99
 
+        //return "redirect:/job?id=" + newJob.getId(); // this displays the right URL but not the page... Exception
+        // evaluating SpringEL expression:   I think this means that it's not adding the job to the database, so I need to do that...
+
+
+        jobData.add(newJob); // trying this again - didn't work, had to do the lower case j like in number one, took me a minute to connect that they were the same error, try the same solution
+        return "redirect:/job?id=" + newJob.getId();
         // this is going to need to go back and add the information to the database and display it - this is what I had deleted from before:
         //if(employerId.getLocation().getValue().contains(jobForm.getLocationId()))
         // Location location = employerId.getLocation().getValue()
         // that was not as useful as I had hoped
-
-
-
     }
 }
 
