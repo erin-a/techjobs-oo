@@ -75,19 +75,29 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid JobForm jobForm, Errors errors) { // added @ModelAttribute
-        // annotation because I think binding is necessary to make the validation work
+    public String add(Model model, @ModelAttribute @Valid  JobForm jobForm, Errors errors, Job newJob) { // added @ModelAttribute
+        // annotation because I think binding is necessary to make the validation work // added and removed Job new Job as a parameter, that idn't work h
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
         if(errors.hasErrors()) {
+            model.addAttribute("name", "Add Job");
             return "new-job";
-        }
+        } // this tells it what to do if there are errors, if there are no errors it needs to add the job to the 'database'
 
-        return ""; // this is going to need to go back and add the information to the database and display it - need
-        // to go back in git and see what I deleted from before.
+        //JobData.add(newJob); // this is what we did in cheese, but cheese had already an instand of newJob defined as an parameter, so added it to the end of the list, not sure if we need to play with the order...
+
+
+        return "job-detail"; // this should redirect to the new job using the individual job link from to do number 1
+
+        // this is going to need to go back and add the information to the database and display it - this is what I had deleted from before:
+        //if(employerId.getLocation().getValue().contains(jobForm.getLocationId()))
+        // Location location = employerId.getLocation().getValue()
+        // that was not as useful as I had hoped
+
+
 
     }
 }
