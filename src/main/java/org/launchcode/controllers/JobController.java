@@ -7,6 +7,7 @@ import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -69,31 +70,26 @@ public class JobController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
-        model.addAttribute(new JobForm());
+        model.addAttribute(new JobForm()); // I think this is already the skeleton object to hold the fields
         return "new-job";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @Valid JobForm jobForm, Errors errors) {
+    public String add(Model model, @Valid JobForm jobForm, Errors errors) { // added @ModelAttribute
+        // annotation because I think binding is necessary to make the validation work
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-
-        //if(employerId.getLocation().getValue().contains(jobForm.getLocationId()))
-        // Location location = employerId.getLocation().getValue()
-
-
+        if(errors.hasErrors()) {
+            return "new-job";
+        }
 
         return "";
 
     }
 }
-
-//that you will work in to enable full creation of a Job object,
-// including all necessary fields.
-
 
 /* notes from assignment on #6
 Validate the form in the add handler of JobController, and if it's valid, create a new Job object and add it to
