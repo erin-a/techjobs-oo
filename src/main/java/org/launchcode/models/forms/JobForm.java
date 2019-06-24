@@ -1,6 +1,5 @@
 package org.launchcode.models.forms;
 
-import javafx.geometry.Pos;
 import org.launchcode.models.CoreCompetency;
 import org.launchcode.models.Employer;
 import org.launchcode.models.Location;
@@ -40,13 +39,13 @@ public class JobForm {
     // doing the not null and private because the name and employer have it, using the Classes already created
     // for each field we need
     @NotNull
-    private Location locationId;
+    private int locationId; //need to be int
 
     @NotNull
-    private CoreCompetency coreCompetencyId;
+    private int coreCompetencyId;
 
     @NotNull
-    private PositionType positionTypeId;
+    private int positionTypeId;
 
         // Location location = employerId.getLocation().getValue()
 
@@ -146,6 +145,8 @@ public class JobForm {
     }
 
 
+    //
+
     public String getName() {
         return name;
     }
@@ -162,27 +163,27 @@ public class JobForm {
         this.employerId = employerId;
     }
 
-    public Location getLocationId() {
+    public int getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(Location locationId) {
+    public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
 
-    public CoreCompetency getCoreCompetencyId() {
+    public int getCoreCompetencyId() {
         return coreCompetencyId;
     }
 
-    public void setCoreCompetencyId(CoreCompetency coreCompetencyId) {
+    public void setCoreCompetencyId(int coreCompetencyId) {
         this.coreCompetencyId = coreCompetencyId;
     }
 
-    public PositionType getPositionTypeId() {
+    public int getPositionTypeId() {
         return positionTypeId;
     }
 
-    public void setPositionTypeId(PositionType positionTypeId) {
+    public void setPositionTypeId(int positionTypeId) {
         this.positionTypeId = positionTypeId;
     }
 
