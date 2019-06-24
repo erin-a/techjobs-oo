@@ -17,7 +17,7 @@
     Within the job-detail.html template you need to display the properties of the job in a table.
 -->
 
-        <table  th:fragment="single-job" class="job-listing">
+         <table  th:fragment="single-job" class="job-listing">
             <tr>
                 <th>Name</th>
                 <td th:text="${job.name}"></td>
@@ -39,6 +39,10 @@
                 <td th:text="${job.coreCompetency}"></td>
             </tr>
         </table>
+
+        <!-- the above was copied and pasted from list-jobs.html, below was copied and pasted from search.html
+
+    <div th:replace="list-jobs :: jobs-list"></div> -->
 
 </div>
 

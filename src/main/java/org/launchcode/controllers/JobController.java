@@ -1,6 +1,6 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Job;
+import org.launchcode.models.*;
 import org.launchcode.models.data.JobFieldData;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
@@ -76,16 +76,16 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid  JobForm jobForm, Errors errors, Job newJob) { // added @ModelAttribute
+    public String add(Model model, @ModelAttribute @Valid  JobForm jobForm, Errors errors) { // added @ModelAttribute
         // annotation because I think binding is necessary to make the validation work // added and removed Job new Job
-        // as a parameter, that idn't work h
+        // as a parameter, added it back in and took it out because of the Job newJOb = below
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
         if(errors.hasErrors()) {
-            model.addAttribute("name", "Add Job");
+            //model.addAttribute("name", "Add Job");  // tried combos of attribute names of "id" "job" - nothing made changes
             return "new-job";
         } // this tells it what to do if there are errors, if there are no errors it needs to add the job to the 'database'
 
@@ -101,9 +101,32 @@ public class JobController {
 
         //return "redirect:/job?id=" + newJob.getId(); // this displays the right URL but not the page... Exception
         // evaluating SpringEL expression:   I think this means that it's not adding the job to the database, so I need to do that...
+        String theName = jobForm.getName();
+        Employer theEmployer = jobData.getEmployers().findById(jobForm.getEmployerId());
+        Location theLocation = jobData.getLocations().findById(jobForm.getEmployerId());
+        PositionType thePositionType = jobData.getPositionTypes().findById(jobForm.getEmployerId());
+
+        CoreCompetency theCoreCompetency = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
 
 
+        //Location theLocation = jobData.getLocations().findById(jobForm.getLocationId());
+        //PositionType thePositionType = jobData.getPositionTypes().findById(jobForm.getPositionTypeId());
+        //CoreCompetency theCoreCompetency = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
+        // trying this because it doesn't seem to cooperate with pulling the information from the creating the new job
+
+
+        Job newJob = new Job(theName, theEmployer, theLocation, thePositionType, theCoreCompetency);
+                // trying to pull values out of form to add to database
+                // needed to be jobFrom and not JobForm
+                // jobForm.getEmployerId() etc not working
+                // i think this is pulling from the form but not adding to the database
+                // jobData.getEmployers().findById(jobForm.getEmployerId()), not working
+                // had them in the wrong order, (realized after rereading directions
+                // now it looks like sharing a line is an issue? nope, it was paretheses off from being in the wrong order
+
+        // model.addAttribute("job", newJob) trying to add to the database
         jobData.add(newJob); // trying this again - didn't work, had to do the lower case j like in number one, took me a minute to connect that they were the same error, try the same solution
+
         return "redirect:/job?id=" + newJob.getId();
         // this is going to need to go back and add the information to the database and display it - this is what I had deleted from before:
         //if(employerId.getLocation().getValue().contains(jobForm.getLocationId()))
